@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 flex flex-col items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-96 text-center">
+        <h1 class="text-2xl font-bold mb-4 text-blue-600">🌤 Weather App</h1>
+
+        <form method="post" action="/weather" class="flex gap-2 mb-4">
+            <input name="city" type="text" placeholder="Enter city" required
+                class="flex-grow border border-blue-300 rounded p-2 focus:outline-none focus:ring focus:ring-blue-200" />
+            <button type="submit"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>
+        </form>
+
+        {% if error %}
+        <p class="text-red-500">{{ error }}</p>
+        {% endif %}
+
+        {% if weather %}
+        <div class="text-gray-700 mt-4">
+            <h2 class="text-xl font-semibold">{{ weather.name }}</h2>
+            <p class="text-3xl font-bold">{{ weather.main.temp }}°C</p>
+            <p class="capitalize">{{ weather.weather[0].description }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
